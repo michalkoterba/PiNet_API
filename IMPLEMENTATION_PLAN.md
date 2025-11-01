@@ -29,18 +29,18 @@ This document provides a comprehensive implementation checklist for the PiNet AP
   - [x] wakeonlan (WoL magic packet library)
 
 ### 1.2 Environment Configuration
-- [ ] Create `.env.example` template with:
-  - [ ] `API_KEY` placeholder (for authentication)
-  - [ ] `API_PORT` placeholder (default: 5000)
-  - [ ] Comments explaining each variable
+- [x] Create `.env.example` template with:
+  - [x] `API_KEY` placeholder (for authentication)
+  - [x] `API_PORT` placeholder (default: 5000)
+  - [x] Comments explaining each variable
 
 ### 1.3 Version Control
-- [ ] Create `.gitignore` to exclude:
-  - [ ] `.env` (sensitive credentials)
-  - [ ] `venv/` and `.venv/` (virtual environments)
-  - [ ] `__pycache__/` and `*.pyc` (Python cache)
-  - [ ] `*.log` (log files)
-  - [ ] IDE-specific files (`.idea/`, `.vscode/`)
+- [x] Create `.gitignore` to exclude:
+  - [x] `.env` (sensitive credentials)
+  - [x] `venv/` and `.venv/` (virtual environments)
+  - [x] `__pycache__/` and `*.pyc` (Python cache)
+  - [x] `*.log` (log files)
+  - [x] IDE-specific files (`.idea/`, `.vscode/`)
 
 ---
 
@@ -49,74 +49,74 @@ This document provides a comprehensive implementation checklist for the PiNet AP
 ### 2.1 Flask Application Structure (app.py)
 
 #### Setup & Configuration
-- [ ] Import required modules (Flask, os, subprocess, etc.)
-- [ ] Load environment variables using python-dotenv
-- [ ] Initialize Flask application
-- [ ] Configure logging to stdout/stderr
+- [x] Import required modules (Flask, os, subprocess, etc.)
+- [x] Load environment variables using python-dotenv
+- [x] Initialize Flask application
+- [x] Configure logging to stdout/stderr
 
 #### Authentication & Security
-- [ ] Implement API key authentication decorator
-- [ ] Check `X-API-Key` header against `.env` API_KEY
-- [ ] Return 401 Unauthorized for invalid/missing keys
-- [ ] Apply decorator to protected endpoints only
+- [x] Implement API key authentication decorator
+- [x] Check `X-API-Key` header against `.env` API_KEY
+- [x] Return 401 Unauthorized for invalid/missing keys
+- [x] Apply decorator to protected endpoints only
 
 #### Input Validation
-- [ ] Create IP address validator function
-  - [ ] Use regex to validate IPv4 format
-  - [ ] Prevent command injection attacks
-  - [ ] Return clear error messages for invalid input
-- [ ] Create MAC address validator function
-  - [ ] Support common MAC formats (colon/hyphen/none)
-  - [ ] Validate format: XX:XX:XX:XX:XX:XX or XX-XX-XX-XX-XX-XX
-  - [ ] Return clear error messages for invalid input
+- [x] Create IP address validator function
+  - [x] Use regex to validate IPv4 format
+  - [x] Prevent command injection attacks
+  - [x] Return clear error messages for invalid input
+- [x] Create MAC address validator function
+  - [x] Support common MAC formats (colon/hyphen/none)
+  - [x] Validate format: XX:XX:XX:XX:XX:XX or XX-XX-XX-XX-XX-XX
+  - [x] Return clear error messages for invalid input
 
 ### 2.2 API Endpoints
 
 #### FR1: Health Check Endpoint
-- [ ] Implement `GET /` endpoint
-- [ ] No authentication required
-- [ ] Return JSON: `{"service": "PiNet API", "status": "running"}`
-- [ ] Return HTTP 200 OK
-- [ ] Log service startup
+- [x] Implement `GET /` endpoint
+- [x] No authentication required
+- [x] Return JSON: `{"service": "PiNet API", "status": "running"}`
+- [x] Return HTTP 200 OK
+- [x] Log service startup
 
 #### FR2: Ping Host Endpoint
-- [ ] Implement `GET /ping/<ip_address>` endpoint
-- [ ] Apply authentication decorator
-- [ ] Validate IP address format
-- [ ] Execute system ping command using subprocess
-  - [ ] Use `-c 1` for single ping
-  - [ ] Set timeout to prevent hanging
-  - [ ] Capture return code
-- [ ] Return appropriate JSON responses:
-  - [ ] Success (online): `{"ip_address": "...", "status": "online"}`
-  - [ ] Success (offline): `{"ip_address": "...", "status": "offline"}`
-  - [ ] Error (invalid IP): `{"status": "error", "message": "Invalid IP address format."}`
-- [ ] Return correct HTTP status codes (200, 400, 401)
-- [ ] Log successful ping requests with IP address
+- [x] Implement `GET /ping/<ip_address>` endpoint
+- [x] Apply authentication decorator
+- [x] Validate IP address format
+- [x] Execute system ping command using subprocess
+  - [x] Use `-c 1` for single ping
+  - [x] Set timeout to prevent hanging
+  - [x] Capture return code
+- [x] Return appropriate JSON responses:
+  - [x] Success (online): `{"ip_address": "...", "status": "online"}`
+  - [x] Success (offline): `{"ip_address": "...", "status": "offline"}`
+  - [x] Error (invalid IP): `{"status": "error", "message": "Invalid IP address format."}`
+- [x] Return correct HTTP status codes (200, 400, 401)
+- [x] Log successful ping requests with IP address
 
 #### FR3: Wake-on-LAN Endpoint
-- [ ] Implement `POST /wol` endpoint
-- [ ] Apply authentication decorator
-- [ ] Accept JSON body with `mac_address` field
-- [ ] Validate MAC address format
-- [ ] Use wakeonlan library to send magic packet
-- [ ] Return appropriate JSON responses:
-  - [ ] Success: `{"status": "success", "message": "Wake-on-LAN packet sent to ..."}`
-  - [ ] Error (invalid MAC): `{"status": "error", "message": "Invalid MAC address format."}`
-- [ ] Return correct HTTP status codes (200, 400, 401)
-- [ ] Log successful WoL requests with MAC address
+- [x] Implement `POST /wol` endpoint
+- [x] Apply authentication decorator
+- [x] Accept JSON body with `mac_address` field
+- [x] Validate MAC address format
+- [x] Use wakeonlan library to send magic packet
+- [x] Return appropriate JSON responses:
+  - [x] Success: `{"status": "success", "message": "Wake-on-LAN packet sent to ..."}`
+  - [x] Error (invalid MAC): `{"status": "error", "message": "Invalid MAC address format."}`
+- [x] Return correct HTTP status codes (200, 400, 401)
+- [x] Log successful WoL requests with MAC address
 
 #### Error Handling
-- [ ] Implement global error handler for 404 Not Found
-- [ ] Implement global error handler for 500 Internal Server Error
-- [ ] Log all errors to stderr
-- [ ] Return JSON error responses consistently
+- [x] Implement global error handler for 404 Not Found
+- [x] Implement global error handler for 500 Internal Server Error
+- [x] Log all errors to stderr
+- [x] Return JSON error responses consistently
 
 ### 2.3 Application Entry Point
-- [ ] Add `if __name__ == '__main__':` block for development
-- [ ] Configure Flask to run on `0.0.0.0` (all interfaces)
-- [ ] Use port from environment variable or default 5000
-- [ ] Add comment noting Gunicorn will be used in production
+- [x] Add `if __name__ == '__main__':` block for development
+- [x] Configure Flask to run on `0.0.0.0` (all interfaces)
+- [x] Use port from environment variable or default 5000
+- [x] Add comment noting Gunicorn will be used in production
 
 ---
 
