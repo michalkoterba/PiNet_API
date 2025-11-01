@@ -123,72 +123,73 @@ This document provides a comprehensive implementation checklist for the PiNet AP
 ## Phase 3: Deployment Automation
 
 ### 3.1 Systemd Service Template
-- [ ] Create `pi_utility.service.template` file with:
-  - [ ] Service description
-  - [ ] `After=network.target` (wait for network)
-  - [ ] `WorkingDirectory=%%APP_DIR%%` placeholder
-  - [ ] `User=%%APP_USER%%` placeholder
-  - [ ] `ExecStart` using venv's Gunicorn:
-    - [ ] Path: `%%APP_DIR%%/venv/bin/gunicorn`
-    - [ ] Bind to `0.0.0.0:5000`
-    - [ ] Workers: 2 (lightweight for Pi)
-    - [ ] Module: `app:app`
-  - [ ] `Restart=always` (auto-restart on crash)
-  - [ ] `RestartSec=3` (wait 3 seconds before restart)
-  - [ ] `WantedBy=multi-user.target`
+- [x] Create `pi_utility.service.template` file with:
+  - [x] Service description
+  - [x] `After=network.target` (wait for network)
+  - [x] `WorkingDirectory=%%APP_DIR%%` placeholder
+  - [x] `User=%%APP_USER%%` placeholder
+  - [x] `ExecStart` using venv's Gunicorn:
+    - [x] Path: `%%APP_DIR%%/venv/bin/gunicorn`
+    - [x] Bind to `0.0.0.0:5000`
+    - [x] Workers: 2 (lightweight for Pi)
+    - [x] Module: `app:app`
+  - [x] `Restart=always` (auto-restart on crash)
+  - [x] `RestartSec=3` (wait 3 seconds before restart)
+  - [x] `WantedBy=multi-user.target`
 
 ### 3.2 Installation Script (install.sh)
-- [ ] Create `install.sh` bash script with:
+- [x] Create `install.sh` bash script with:
 
 #### Prerequisite Checks
-- [ ] Check for sudo privileges (required for installation)
-- [ ] Print welcome message with script purpose
+- [x] Check for sudo privileges (required for installation)
+- [x] Print welcome message with script purpose
 
 #### System Dependencies
-- [ ] Run `sudo apt update`
-- [ ] Install `python3-pip` package
-- [ ] Install `python3-venv` package
-- [ ] Verify installations successful
+- [x] Run `sudo apt update`
+- [x] Install `python3-pip` package
+- [x] Install `python3-venv` package
+- [x] Verify installations successful
 
 #### Project Setup
-- [ ] Determine absolute path to project directory (`APP_DIR=$(pwd)`)
-- [ ] Determine current user (`APP_USER=$(whoami)`)
-- [ ] Print detected values for confirmation
+- [x] Determine absolute path to project directory (`APP_DIR=$(pwd)`)
+- [x] Determine current user (`APP_USER=$(whoami)`)
+- [x] Print detected values for confirmation
 
 #### Python Environment
-- [ ] Create virtual environment: `python3 -m venv venv`
-- [ ] Upgrade pip in venv: `venv/bin/pip install --upgrade pip`
-- [ ] Install requirements: `venv/bin/pip install -r requirements.txt`
-- [ ] Verify installations successful
+- [x] Create virtual environment: `python3 -m venv venv`
+- [x] Upgrade pip in venv: `venv/bin/pip install --upgrade pip`
+- [x] Install requirements: `venv/bin/pip install -r requirements.txt`
+- [x] Verify installations successful
 
 #### Configuration
-- [ ] Copy `.env.example` to `.env`
-- [ ] Check if `.env` already exists (don't overwrite)
-- [ ] Remind user to edit `.env` with their API key
+- [x] Copy `.env.example` to `.env`
+- [x] Check if `.env` already exists (don't overwrite)
+- [x] Remind user to edit `.env` with their API key
 
 #### Systemd Service
-- [ ] Read `pi_utility.service.template` file
-- [ ] Replace `%%APP_DIR%%` with actual path using `sed`
-- [ ] Replace `%%APP_USER%%` with actual user using `sed`
-- [ ] Save output as `pinet_api.service` (generated file)
-- [ ] Copy generated file to `/etc/systemd/system/`
-- [ ] Run `sudo systemctl daemon-reload`
-- [ ] Run `sudo systemctl enable pinet_api.service`
-- [ ] Run `sudo systemctl start pinet_api.service`
+- [x] Read `pi_utility.service.template` file
+- [x] Replace `%%APP_DIR%%` with actual path using `sed`
+- [x] Replace `%%APP_USER%%` with actual user using `sed`
+- [x] Save output as `pinet_api.service` (generated file)
+- [x] Copy generated file to `/etc/systemd/system/`
+- [x] Run `sudo systemctl daemon-reload`
+- [x] Run `sudo systemctl enable pinet_api.service`
+- [x] Run `sudo systemctl start pinet_api.service`
 
 #### Final Status
-- [ ] Check service status: `systemctl status pinet_api.service`
-- [ ] Print success message with:
-  - [ ] Reminder to edit `.env` with API_KEY
-  - [ ] API URL (e.g., `http://<pi_ip>:5000`)
-  - [ ] Commands to check logs: `journalctl -u pinet_api.service -f`
-  - [ ] Commands to restart: `sudo systemctl restart pinet_api.service`
+- [x] Check service status: `systemctl status pinet_api.service`
+- [x] Print success message with:
+  - [x] Reminder to edit `.env` with API_KEY
+  - [x] API URL (e.g., `http://<pi_ip>:5000`)
+  - [x] Commands to check logs: `journalctl -u pinet_api.service -f`
+  - [x] Commands to restart: `sudo systemctl restart pinet_api.service`
 
 #### Script Polish
-- [ ] Make script executable: `chmod +x install.sh`
-- [ ] Add proper error handling (exit on errors)
-- [ ] Add comments explaining each step
-- [ ] Use colored output for better readability (optional)
+- [x] ~~Make script executable: `chmod +x install.sh`~~ (The script will be made executable when it's run on the Raspberry Pi with bash install.sh, or the user can run chmod +x install.sh directly on the Pi
+  after cloning.)
+- [x] Add proper error handling (exit on errors)
+- [x] Add comments explaining each step
+- [x] Use colored output for better readability (optional)
 
 ---
 
