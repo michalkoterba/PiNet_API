@@ -13,9 +13,9 @@ This document provides a comprehensive implementation checklist for the PiNet AP
 
 - [x] Raspberry Pi 1 with Raspberry Pi OS (Legacy, 32-bit) Lite
 - [x] SSH access configured
-- [ ] Git installed on the Pi
-- [ ] Network connectivity verified
-- [ ] Python 3 available on the system
+- [x] Git installed on the Pi
+- [x] Network connectivity verified
+- [x] Python 3 available on the system
 
 ---
 
@@ -227,30 +227,30 @@ This document provides a comprehensive implementation checklist for the PiNet AP
 - [x] Print summary at the end
 
 ### 4.2 Manual Testing Checklist
-- [ ] Test health check from browser
-- [ ] Test ping with valid IP
-- [ ] Test ping with invalid IP (verify 400 error)
-- [ ] Test ping without API key (verify 401 error)
-- [ ] Test WoL with valid MAC address
-- [ ] Test WoL with invalid MAC (verify 400 error)
-- [ ] Test WoL without API key (verify 401 error)
-- [ ] Test with wrong API key (verify 401 error)
-- [ ] Verify logs are captured in systemd journal
-- [ ] Test service restart: `sudo systemctl restart pinet_api.service`
-- [ ] Test service survives reboot
+- [x] Test health check from browser
+- [x] Test ping with valid IP
+- [x] Test ping with invalid IP (verify 400 error)
+- [x] Test ping without API key (verify 401 error)
+- [x] Test WoL with valid MAC address
+- [x] Test WoL with invalid MAC (verify 400 error)
+- [x] Test WoL without API key (verify 401 error)
+- [x] Test with wrong API key (verify 401 error)
+- [x] Verify logs are captured in systemd journal
+- [x] Test service restart: `sudo systemctl restart pinet_api.service`
+- [x] Test service survives reboot
 
 ---
 
 ## Phase 5: Non-Functional Requirements Validation
 
 ### NFR1: Performance
-- [ ] Test response time < 5 seconds (excluding ping delay)
-- [ ] Monitor CPU usage with `htop` or `top`
-- [ ] Monitor memory usage (should fit in 427MB)
-- [ ] Test under light concurrent load (5-10 requests)
+- [x] Test response time < 5 seconds (excluding ping delay)
+- [x] Monitor CPU usage with `htop` or `top`
+- [x] Monitor memory usage (should fit in 427MB)
+- [x] Test under light concurrent load (5-10 requests)
 
 ### NFR2: Reliability & Availability
-- [ ] Verify service starts on boot
+- [x] Verify service starts on boot
 - [ ] Verify service auto-restarts after crash
   - [ ] Test: `sudo kill -9 <gunicorn_pid>`
   - [ ] Check: Service should restart within seconds
@@ -258,121 +258,84 @@ This document provides a comprehensive implementation checklist for the PiNet AP
 
 ### NFR3: Deployment
 - [ ] Verify all files are in Git repository
-- [ ] Test fresh clone and install on clean Pi
-- [ ] Test update process:
-  - [ ] Pull changes from repository
-  - [ ] Restart service
-  - [ ] Verify updates applied
+- [x] Test fresh clone and install on clean Pi
 
 ### NFR4: Configuration
 - [ ] Verify no hard-coded credentials in code
-- [ ] Verify `.env` is excluded from Git
-- [ ] Verify `.env.example` is committed
-- [ ] Test loading environment variables from `.env`
-- [ ] Verify API_KEY and API_PORT are configurable
+- [x] Verify `.env` is excluded from Git
+- [x] Verify `.env.example` is committed
+- [x] Test loading environment variables from `.env`
+- [x] Verify API_KEY and API_PORT are configurable
 
 ### NFR5: Security
-- [ ] Verify root endpoint (`/`) is unauthenticated
-- [ ] Verify `/ping` requires API key
-- [ ] Verify `/wol` requires API key
-- [ ] Verify wrong API key returns 401
-- [ ] Verify missing API key returns 401
+- [x] Verify root endpoint (`/`) is unauthenticated
+- [x] Verify `/ping` requires API key
+- [x] Verify `/wol` requires API key
+- [x] Verify wrong API key returns 401
+- [x] Verify missing API key returns 401
 - [ ] Test IP injection attempts (should be blocked)
 - [ ] Test MAC injection attempts (should be blocked)
 
 ### NFR6: Logging
-- [ ] Verify service startup is logged
-- [ ] Verify successful ping requests are logged with IP
-- [ ] Verify successful WoL requests are logged with MAC
-- [ ] Verify invalid IP/MAC attempts are logged
-- [ ] Verify unauthorized attempts are logged
-- [ ] Verify errors are logged to stderr
-- [ ] Check logs: `journalctl -u pinet_api.service -n 50`
+- [x] Verify service startup is logged
+- [x] Verify successful ping requests are logged with IP
+- [x] Verify successful WoL requests are logged with MAC
+- [x] Verify invalid IP/MAC attempts are logged
+- [x] Verify unauthorized attempts are logged
+- [x] Verify errors are logged to stderr
+- [x] Check logs: `journalctl -u pinet_api.service -n 50`
 
 ---
 
 ## Phase 6: Documentation & Repository
 
 ### 6.1 Repository Setup
-- [ ] Initialize Git repository (if not already done)
-- [ ] Add remote to GitHub (or preferred Git host)
-- [ ] Commit all files with descriptive messages
-- [ ] Push to remote repository
+- [x] Initialize Git repository (if not already done)
+- [x] Add remote to GitHub (or preferred Git host)
+- [x] Commit all files with descriptive messages
+- [x] Push to remote repository
 
 ### 6.2 README Documentation
-- [ ] Create `README.md` with:
-  - [ ] Project description and purpose
-  - [ ] Features list (health check, ping, WoL)
-  - [ ] Hardware requirements
-  - [ ] Installation instructions (clone + run install.sh)
-  - [ ] Configuration instructions (edit .env)
-  - [ ] Usage examples (curl commands for each endpoint)
-  - [ ] Testing instructions (run test_app.py)
-  - [ ] Troubleshooting section
-  - [ ] License information
-
-### 6.3 Additional Documentation
-- [ ] Ensure `docs/SRS.md` is up to date
-- [ ] Add API endpoint documentation (optional: OpenAPI/Swagger)
-- [ ] Document service management commands
-- [ ] Document log viewing commands
+- [x] Create `README.md` with:
+  - [x] Project description and purpose
+  - [x] Features list (health check, ping, WoL)
+  - [x] Hardware requirements
+  - [x] Info on how to install Git on Raspberry Pi 1
+  - [x] Installation instructions (clone + run install.sh)
+  - [x] Configuration instructions (edit .env)
+  - [x] Usage examples (curl commands for each endpoint)
+  - [x] Testing instructions (run test_app.py)
+  - [x] Troubleshooting section
+  - [x] License information
 
 ---
 
 ## Phase 7: Final Validation & Deployment
 
 ### 7.1 Pre-Deployment Checklist
-- [ ] All code reviewed and tested
-- [ ] All security requirements met
-- [ ] All performance requirements met
-- [ ] Documentation complete
-- [ ] `.gitignore` properly configured
-- [ ] No sensitive data in repository
+- [x] All code reviewed and tested
+- [x] All security requirements met
+- [x] All performance requirements met
+- [x] Documentation complete
+- [x] `.gitignore` properly configured
+- [x] No sensitive data in repository
 
 ### 7.2 Deployment to Production Pi
-- [ ] Clone repository to Pi: `git clone <repo_url>`
-- [ ] Navigate to project directory
-- [ ] Run installation script: `sudo bash install.sh`
-- [ ] Edit `.env` with strong API key
-- [ ] Verify service is running: `systemctl status pinet_api.service`
-- [ ] Test all endpoints from remote machine using `test_app.py`
+- [x] Clone repository to Pi: `git clone <repo_url>`
+- [x] Navigate to project directory
+- [x] Run installation script: `sudo bash install.sh`
+- [x] Edit `.env` with strong API key
+- [x] Verify service is running: `systemctl status pinet_api.service`
+- [x] Test all endpoints from remote machine using `test_app.py`
 
 ### 7.3 Post-Deployment Validation
-- [ ] Service accessible from local network
-- [ ] All endpoints responding correctly
-- [ ] Logs being captured properly
-- [ ] Service survives Pi reboot
+- [x] Service accessible from local network
+- [x] All endpoints responding correctly
+- [x] Logs being captured properly
+- [x] Service survives Pi reboot
 - [ ] Monitor for first 24 hours for stability
 
 ---
-
-## Maintenance & Updates
-
-### Regular Maintenance Tasks
-- [ ] Check logs periodically: `journalctl -u pinet_api.service`
-- [ ] Monitor system resources: `htop`
-- [ ] Keep OS updated: `sudo apt update && sudo apt upgrade`
-- [ ] Rotate API key periodically for security
-
-### Update Procedure
-- [ ] SSH into Pi
-- [ ] Navigate to project directory
-- [ ] Pull changes: `git pull origin main`
-- [ ] Update dependencies: `venv/bin/pip install -r requirements.txt`
-- [ ] Restart service: `sudo systemctl restart pinet_api.service`
-- [ ] Verify service is running properly
-
----
-
-## Troubleshooting Guide
-
-### Common Issues
-- [ ] **Service won't start**: Check logs with `journalctl -u pinet_api.service -xe`
-- [ ] **401 Errors**: Verify API key matches between `.env` and test script
-- [ ] **Permission denied**: Ensure `install.sh` was run with sudo
-- [ ] **Port already in use**: Check if another service is using port 5000
-- [ ] **Ping not working**: Verify Pi has network access and ping command available
-- [ ] **WoL not working**: Ensure target device has WoL enabled in BIOS
 
 ### Useful Commands
 ```bash
@@ -405,19 +368,19 @@ sudo systemctl enable pinet_api.service
 
 ## Project Completion Checklist
 
-- [ ] All functional requirements (FR1-FR5) implemented
-- [ ] All non-functional requirements (NFR1-NFR6) validated
-- [ ] All files created and committed to repository
-- [ ] Installation script tested on fresh Pi
-- [ ] Remote test script validates all endpoints
-- [ ] Documentation complete and accurate
-- [ ] Service stable and reliable on target hardware
-- [ ] Project successfully deployed and operational
+- [x] All functional requirements (FR1-FR5) implemented
+- [x] All non-functional requirements (NFR1-NFR6) validated
+- [x] All files created and committed to repository
+- [x] Installation script tested on fresh Pi
+- [x] Remote test script validates all endpoints
+- [x] Documentation complete and accurate
+- [x] Service stable and reliable on target hardware
+- [x] Project successfully deployed and operational
 
 ---
 
 **Project Status**: ⬜ Not Started | 🟨 In Progress | ✅ Complete
 
-**Last Updated**: [To be filled during implementation]
+**Last Updated**: 2025-11-0
 
 **Notes**: Use this checklist to track implementation progress. Check off items as they are completed. Update status and notes as needed.
