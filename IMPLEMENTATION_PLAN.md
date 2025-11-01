@@ -196,35 +196,35 @@ This document provides a comprehensive implementation checklist for the PiNet AP
 ## Phase 4: Testing & Validation
 
 ### 4.1 Remote Test Script (test_app.py)
-- [ ] Create `test_app.py` Python script with:
+- [x] Create `test_app.py` Python script with:
 
 #### User Input
-- [ ] Prompt for Pi base URL (e.g., `http://192.168.1.50:5000`)
-- [ ] Prompt for API_KEY from Pi's `.env` file
-- [ ] Prompt for target IP address (for ping test)
-- [ ] Prompt for target MAC address (for WoL test)
-- [ ] Strip whitespace from inputs
+- [x] Prompt for Pi base URL (e.g., `http://192.168.1.50:5000`)
+- [x] Prompt for API_KEY from Pi's `.env` file
+- [x] Prompt for target IP address (for ping test)
+- [x] Prompt for target MAC address (for WoL test)
+- [x] Strip whitespace from inputs
 
 #### Test Execution
-- [ ] Test FR1: Health Check (`GET /`)
-  - [ ] Send request without API key
-  - [ ] Print status code and response JSON
-  - [ ] Verify status is "running"
-- [ ] Test FR2: Ping Host (`GET /ping/<ip>`)
-  - [ ] Send request with API key in `X-API-Key` header
-  - [ ] Print status code and response JSON
-  - [ ] Verify IP address echoed back correctly
-- [ ] Test FR3: Wake-on-LAN (`POST /wol`)
-  - [ ] Send request with API key and MAC in JSON body
-  - [ ] Print status code and response JSON
-  - [ ] Verify success message
+- [x] Test FR1: Health Check (`GET /`)
+  - [x] Send request without API key
+  - [x] Print status code and response JSON
+  - [x] Verify status is "running"
+- [x] Test FR2: Ping Host (`GET /ping/<ip>`)
+  - [x] Send request with API key in `X-API-Key` header
+  - [x] Print status code and response JSON
+  - [x] Verify IP address echoed back correctly
+- [x] Test FR3: Wake-on-LAN (`POST /wol`)
+  - [x] Send request with API key and MAC in JSON body
+  - [x] Print status code and response JSON
+  - [x] Verify success message
 
 #### Output Formatting
-- [ ] Print clear test headers for each endpoint
-- [ ] Format JSON output with indentation
-- [ ] Use colors or formatting for pass/fail (optional)
-- [ ] Handle network errors gracefully
-- [ ] Print summary at the end
+- [x] Print clear test headers for each endpoint
+- [x] Format JSON output with indentation
+- [x] Use colors or formatting for pass/fail (optional)
+- [x] Handle network errors gracefully
+- [x] Print summary at the end
 
 ### 4.2 Manual Testing Checklist
 - [ ] Test health check from browser
