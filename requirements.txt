@@ -1,0 +1,14 @@
+# PiNet API - Python Dependencies
+# Target: Raspberry Pi 1 (armv6l, Python 3)
+
+# Web Framework
+Flask==3.0.0
+
+# WSGI HTTP Server
+gunicorn==21.2.0
+
+# Environment Variable Management
+python-dotenv==1.0.0
+
+# Wake-on-LAN Magic Packet Library
+wakeonlan==3.1.0
